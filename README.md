@@ -3,8 +3,10 @@
 Render Markdown documentation directly in the Django admin `/admin/`.
 
 - Support for nested subfolders
-- Comprehensive Markdown format using 
+- Comprehensive Markdown format 
 - Provides default styles for Markdown rendering
+
+See [this screenshot](https://raw.githubusercontent.com/bartTC/django-actual-admin-docs/refs/heads/main/docs/example.png) of an example page.
 
 ## Installation
 
