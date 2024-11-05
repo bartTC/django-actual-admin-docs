@@ -1,0 +1,130 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "django-actual-admin-docs"
+version = "0.1"
+packages = [{include = "actual_admin_docs"}]
+description = "Render Markdown documentation in the Django Admin."
+authors = ["Martin Mahner <martin@mahner.org>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://barttc.github.io/django-actual-admin-docs/"
+documentation = "https://barttc.github.io/django-actual-admin-docs/"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: Django",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "*"
+markdown-it-py = {version = "*", extras = ["linkify", "plugins"]}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-django = "*"
+pytest-socket = "*"
+pytest-cov = "*"
+
+[tool.mypy]
+check_untyped_defs = true
+ignore_errors = false
+ignore_missing_imports = true
+strict_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+exclude = ".*/migrations/.*"
+
+[tool.ruff]
+target-version = "py313"
+exclude = ["migrations"]
+lint.select = ["ALL"]
+lint.ignore = [
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+    "ARG001", # Unused function argument (request, ...)
+    "ARG002", # Unused method argument (*args, **kwargs)
+    "D",      # Missing or badly formatted docstrings
+    "FBT",    # Flake Boolean Trap (don't use arg=True in functions)
+
+    # Intentionally disabled
+    "RUF012", # Mutable class attributes https://github.com/astral-sh/ruff/issues/5243
+    "COM812", # Checks for the absence of trailing commas
+    "ISC001", # Checks for implicitly concatenated strings on a single line
+]
+
+[tool.ruff.lint.per-file-ignores]
+"actual_admin_docs/tests/*.py" = [
+    "S101",   # Use of `assert` detected
+]
+
+
+[tool.pytest.ini_options]
+python_files = ["*.py"]
+addopts = """
+    --ds=actual_admin_docs.tests.testproject.settings
+    --disable-socket
+    --allow-hosts=127.0.0.1,localhost
+    --reuse-db
+    --cov
+    --cov-report=html:.htmlcov
+"""
+filterwarnings = []
+
+[tool.coverage.run]
+omit = ["test*.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "# pragma: nocover",
+    "if TYPE_CHECKING:"
+]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+toxworkdir=/tmp/tox/actual_django_admin
+skip_missing_interpreters=True
+envlist=
+  py{38,39,310,311,312}-django-{32,40,41,42}
+  py{310,311,312,313}-django-{50,51}
+
+[gh-actions]
+python =
+  3.8: py38
+  3.9: py39
+  3.10: py310
+  3.11: py311
+  3.12: py312
+  3.13: py313
+
+[testenv]
+install_command =
+  pip install {opts} {packages}
+setenv =
+  DJANGO_SETTINGS_MODULE=actual_admin_docs.tests.testproject.settings
+commands =
+  pytest {envsitepackagesdir}/actual_admin_docs
+
+deps=
+  django-32: django==3.2.*
+  django-40: django==4.0.*
+  django-41: django==4.1.*
+  django-42: django==4.2.*
+  django-50: django==5.0.*
+  django-51: django==5.1.*
+  pytest
+  pytest-django
+"""

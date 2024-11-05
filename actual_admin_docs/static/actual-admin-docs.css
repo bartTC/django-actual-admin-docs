@@ -1,0 +1,71 @@
+:root {
+  --article-width: 50em;
+}
+
+article,
+article img {
+  max-width: var(--article-width);
+}
+
+article h1 {
+  font-size: 1.75rem;
+  padding-top: 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+article h2 {
+  margin: 1.5em -1em 1em -1em;
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  color: var(--body-quiet-color);
+  padding: .4em 1em;
+}
+
+article h3 {
+  margin: 2em 0 1em 0;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--body-quiet-color);
+}
+
+article p, article ul, article li, article code {
+  font-size: .9rem;
+  line-height: 1.35rem;
+}
+
+article :not(pre) > code {
+  white-space: pre;
+  background-color: var(--darkened-bg);
+  padding: .2em .4em;
+  border-radius: .2em;
+}
+
+article pre code {
+  display: block;
+  white-space: pre;
+  background-color: var(--darkened-bg);
+  padding: 1em;
+  border: 1px solid var(--border-color);
+  font-size: .8rem;
+}
+
+article table, article img {
+  margin: 2em 0;
+}
+
+.header-anchor {
+  font-size: .8em;
+  visibility: hidden;
+  margin-left: .2em;
+}
+
+h1:hover .header-anchor,
+h2:hover .header-anchor,
+h3:hover .header-anchor,
+h4:hover .header-anchor,
+h5:hover .header-anchor,
+h6:hover .header-anchor {
+  visibility: visible;
+}

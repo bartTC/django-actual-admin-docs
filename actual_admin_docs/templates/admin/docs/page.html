@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{% static 'actual-admin-docs.css' %}" />
+{% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+    <a href="{% url 'actual-admin-docs:index' %}">Documentation</a>
+    {% for b in breadcrumbs %}
+      &rsaquo;
+      {% if b.url %}
+      <a href="{{ b.url }}">{{ b.name }}</a>
+      {% else %}
+        {{ b.name }}
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <article class="actual-admin-docs">
+    {% block actual-admin-docs-content %}
+      {{ docs_content }}
+    {% endblock %}
+  </article>
+{% endblock %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block content_subtitle %}{% endblock %}
+
