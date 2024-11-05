@@ -25,4 +25,11 @@ if path.is_dir():
         return None
 ```
 
-There is no syntax highlighting yet.
+
+This is a fenced code block with `xxx` as the code label:
+
+```xxx
+>+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]
+>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++
+.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.
+```

@@ -12,7 +12,9 @@ def test_docs(admin_client: Client) -> None:
     response = admin_client.get(reverse("actual-admin-docs:index"))
     assert response.status_code == HTTPStatus.OK
 
-    response = admin_client.get(reverse("actual-admin-docs:page", args=["index.md"]))
+    response = admin_client.get(
+        reverse("actual-admin-docs:page", args=["markdown-sample.md"])
+    )
     assert response.status_code == HTTPStatus.OK
 
     response = admin_client.get(

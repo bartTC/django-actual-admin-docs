@@ -12,7 +12,7 @@ Render Markdown documentation directly in the Django admin `/admin/`.
 2. Add `actual_admin_docs` to your `INSTALLED_APPS` setting.
 3. Add the documentation urlpattern, above your admin urls:
 
-   ```py
+   ```python
    from django.contrib import admin
    from django.urls import include, path
    
