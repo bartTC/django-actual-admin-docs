@@ -10,8 +10,7 @@ description = "Render Markdown documentation in the Django Admin."
 authors = ["Martin Mahner <martin@mahner.org>"]
 license = "MIT"
 readme = ["README.md", "CHANGELOG.md"]
-homepage = "https://barttc.github.io/django-actual-admin-docs/"
-documentation = "https://barttc.github.io/django-actual-admin-docs/"
+homepage = "https://github.com/bartTC/django-actual-admin-docs"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
