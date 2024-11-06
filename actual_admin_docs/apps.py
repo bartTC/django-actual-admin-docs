@@ -1,17 +1,15 @@
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from django.apps import AppConfig
 from django.conf import settings
-from django.http import HttpRequest
 from django.utils.safestring import mark_safe
-from pygments import highlight
-from pygments.formatters.html import HtmlFormatter
-from pygments.lexers import get_lexer_by_name
-from pygments.lexers.special import TextLexer
-from pygments.util import ClassNotFound
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from django.http import HttpRequest
 
 
 class ActualAdminDocsConfig(AppConfig):
@@ -31,7 +29,18 @@ class ActualAdminDocsConfig(AppConfig):
         return request.user.is_active and request.user.is_staff
 
     def highlight_code(self, code: str, name: str, attrs: Any) -> str:
-        """Highlight a block of code"""
+        """Highlight a block of fenced code"""
+        # If pygments wasn't installed, just return code as is
+        try:
+            from pygments import highlight
+            from pygments.formatters.html import HtmlFormatter
+            from pygments.lexers import get_lexer_by_name
+            from pygments.lexers.special import TextLexer
+            from pygments.util import ClassNotFound
+        except ImportError:
+            return code
+
+        # No lexer set in the code block (```python)
         if not name:
             return code
 

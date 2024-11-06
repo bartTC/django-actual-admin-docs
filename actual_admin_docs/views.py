@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import mimetypes
 from dataclasses import dataclass
-from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from django.apps import apps
 from django.contrib import admin
@@ -12,7 +11,10 @@ from django.http import Http404, HttpRequest, HttpResponse
 from django.urls import reverse
 from django.views.generic import TemplateView
 
-from actual_admin_docs.apps import ActualAdminDocsConfig
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from actual_admin_docs.apps import ActualAdminDocsConfig
 
 config: ActualAdminDocsConfig = apps.get_app_config("actual_admin_docs")
 
@@ -85,8 +87,8 @@ class DocsView(TemplateView):
         we link to that.
         """
         if path.is_dir():
-            if (path / "index.md").is_file():
-                path = path / "index.md"
+            if (path / self.index_document).is_file():
+                path = path / self.index_document
             else:
                 return None
 
