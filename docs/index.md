@@ -1,6 +1,6 @@
 # django-actual-admin-docs
 
-Render Markdown documentation directly in the Django admin `/admin/`.
+Render Markdown documentation directly in the Django admin`.
 
 - Support for nested subfolders
 - Comprehensive Markdown format (link to which spec)
@@ -8,8 +8,22 @@ Render Markdown documentation directly in the Django admin `/admin/`.
 
 ## Installation
 
-1. `pip install django-actual-admin-docs`.
-2. Add `actual_admin_docs` to your `INSTALLED_APPS` setting.
+1. Install the `django-actual-admin-docs` package:
+
+   - `pip install django-actual-admin-docs[highlight]` if you want to enable syntax highlighting in code blocks. This adds [Pygments](https://pygments.org) as a dependency.
+
+   - `pip install django-actual-admin-docs` if you don't need that and want to keep your third party dependencies lean.
+
+2. Add `actual_admin_docs` to your `INSTALLED_APPS` setting:
+
+   ```python 
+   INSTALLED_APPS = [
+     "django.contrib.admin",
+     "actual_admin_docs",
+     ...
+   ]
+   ```
+   
 3. Add the documentation urlpattern, above your admin urls:
 
    ```python
@@ -32,37 +46,34 @@ Render Markdown documentation directly in the Django admin `/admin/`.
 **See [Markdown Sample](markdown-sample.md) as an example**
 
 You can use folders, subfolders, files in folders, etc.
-You can use regular Markdown files and markup to write your documentation. 
 
 ```
 🗂 docs/
 │
-├── 🗂 subfolder           
-│   ├── 🗂 subfolder_in_a_subfolder
-│   │   ├── 📦 download.zip
-│   │   └── 📝 index.md
+├── 🗂 subfolder   
+│   │   
+│   ├── 🗂 subfolder with spaces
+│   │   └── 📝 another-file.md
 │   │ 
-│   ├── 📝 another_file.md
+│   ├── 📝 another-file.md
 │   └── 📝 index.md
 │
-├── 🗂 assets    
-│   ├── 🌁 image.jpg
-│   └── 🌁 other-image.jpg
+├── 🗂 img    
+│   └── 🌁 cat_studying_glasses.jpg
 │
-└── 📝 index.md
+├── 📝 index.md
+└── 📝 markdown-sample.md
 ```
 
-Use regular Markdown links to link to other documents or objects.
+Use regular Markdown links to link to other documents or objects:
 
 ```markdown
-A link to another document [is a regular link](markdown-sample.md).
-Documents in subdirectories [are supported too](./subdirectory/index.md).
+A link to [another document](./markdown-sample.md) is just a regular Markdown link. Documents in subdirectories [are supported too](./subfolder/another-file.md).
 
 For images, downloads etc. use regular markdown markup too:
 
-![a red bird](./assets/image.jpg)
-
-[Click to download](./subfolder/subfolder_in_a_subfolder/download.zip)
+![A cat judging your code](./img/cat_studying_glasses.jpg)
+[Click to download](./img/./img/cat_studying_glasses.jpg)
 ```
 
 ## Custom CSS

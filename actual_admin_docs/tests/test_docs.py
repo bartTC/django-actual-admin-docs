@@ -18,7 +18,10 @@ def test_docs(admin_client: Client) -> None:
     assert response.status_code == HTTPStatus.OK
 
     response = admin_client.get(
-        reverse("actual-admin-docs:page", args=["subfolder_a/subfolder_b/index.md"])
+        reverse(
+            "actual-admin-docs:page",
+            args=["subfolder/subfolder with spaces/another file with spaces.md"],
+        )
     )
     assert response.status_code == HTTPStatus.OK
 
