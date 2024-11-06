@@ -1,0 +1,20 @@
+on:
+  push:
+
+name: just lint
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Code linting. Run `just lint` to replicate.
+        run: uvx ruff check actual_admin_docs && uvx ruff format --check actual_admin_docs
