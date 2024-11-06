@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "django-actual-admin-docs"
-version = "0.4"
+version = "0.5"
 packages = [{include = "actual_admin_docs"}]
 description = "Render Markdown documentation in the Django Admin."
 authors = ["Martin Mahner <martin@mahner.org>"]
@@ -30,9 +30,6 @@ classifiers = [
 python = "^3.9"
 django = {version = "*", allow-prereleases = true}
 markdown-it-py = {extras = ["linkify", "plugins"], version = "^3.0.0"}
-
-[tool.poetry.extras]
-highlight = ["pygments"]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"

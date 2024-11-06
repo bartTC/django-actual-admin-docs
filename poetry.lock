@@ -386,10 +386,7 @@ files = [
 [package.extras]
 test = ["coverage", "pytest", "pytest-cov"]
 
-[extras]
-highlight = []
-
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "8d87bf6906a7d095961fcb0333f70d8e1b491b245119526217d7ef8880e458b0"
+content-hash = "b2c0082256fdb26db690a3117c3986d62a19d31153a03be7bd707120c46380d4"

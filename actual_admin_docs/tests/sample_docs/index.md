@@ -8,11 +8,7 @@ Render Markdown documentation directly in the Django admin`.
 
 ## Installation
 
-1. Install the `django-actual-admin-docs` package:
-
-   - `pip install django-actual-admin-docs[highlight]` if you want to enable syntax highlighting in code blocks. This adds [Pygments](https://pygments.org) as a dependency.
-
-   - `pip install django-actual-admin-docs` if you don't need that and want to keep your third party dependencies lean.
+1. Install the `django-actual-admin-docs` package. If you have `pygments` installed, code blocks are automatically highlighted.
 
 2. Add `actual_admin_docs` to your `INSTALLED_APPS` setting:
 
