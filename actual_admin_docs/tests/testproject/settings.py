@@ -59,4 +59,4 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-DOCS_ROOT = BASE_DIR.parent.parent / "docs"
+DOCS_ROOT = Path(__file__).resolve().parent.parent / "sample_docs"

@@ -253,20 +253,6 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
-name = "pygments"
-version = "2.18.0"
-description = "Pygments is a syntax highlighting package written in Python."
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "pygments-2.18.0-py3-none-any.whl", hash = "sha256:b8e6aca0523f3ab76fee51799c488e38782ac06eafcf95e7ba832985c8e7b13a"},
-    {file = "pygments-2.18.0.tar.gz", hash = "sha256:786ff802f32e91311bff3889f6e9a86e81505fe99f2735bb6d60ae0c5004f199"},
-]
-
-[package.extras]
-windows-terminal = ["colorama (>=0.4.6)"]
-
-[[package]]
 name = "pytest"
 version = "8.3.3"
 description = "pytest: simple powerful testing with Python"
@@ -400,7 +386,10 @@ files = [
 [package.extras]
 test = ["coverage", "pytest", "pytest-cov"]
 
+[extras]
+highlight = []
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "660e3c8b050dca88ac22ff00cbd1ead8e92b8443d8c3313d5e4900203647ea2d"
+content-hash = "8d87bf6906a7d095961fcb0333f70d8e1b491b245119526217d7ef8880e458b0"

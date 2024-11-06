@@ -71,7 +71,10 @@ class DocsView(TemplateView):
             raise Http404(msg)
 
         mimetype, _ = mimetypes.guess_type(self.document_path)
-        if mimetype == "text/markdown":
+        if (
+            self.document_path.suffix in (".md", ".markdown")
+            or mimetype == "text/markdown"
+        ):
             return super().get(request, *args, **kwargs)
 
         with self.document_path.open("rb") as f:
