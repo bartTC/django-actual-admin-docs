@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "django-actual-admin-docs"
-version = "0.2"
+version = "0.3a0"
 packages = [{include = "actual_admin_docs"}]
 description = "Render Markdown documentation in the Django Admin."
 authors = ["Martin Mahner <martin@mahner.org>"]
@@ -28,15 +28,18 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-django = "*"
+django = {version = "*", allow-prereleases = true}
 markdown-it-py = {version = "*", extras = ["linkify", "plugins"]}
+
+[tool.poetry.group.highlight.dependencies]
 pygments = "*"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.group.test.dependencies]
 pytest = "*"
 pytest-django = "*"
 pytest-socket = "*"
 pytest-cov = "*"
+
 
 [tool.mypy]
 check_untyped_defs = true
@@ -48,6 +51,7 @@ warn_redundant_casts = true
 warn_unused_configs = true
 exclude = ".*/migrations/.*"
 
+
 [tool.ruff]
 target-version = "py313"
 exclude = ["migrations"]
@@ -57,6 +61,7 @@ lint.ignore = [
     "ARG001", # Unused function argument (request, ...)
     "ARG002", # Unused method argument (*args, **kwargs)
     "D",      # Missing or badly formatted docstrings
+    "ERA001", # Found commented out code
     "FBT",    # Flake Boolean Trap (don't use arg=True in functions)
 
     # Intentionally disabled
@@ -72,6 +77,7 @@ lint.ignore = [
 
 
 [tool.pytest.ini_options]
+testpaths = ["actual_admin_docs"]
 python_files = ["*.py"]
 addopts = """
     --ds=actual_admin_docs.tests.testproject.settings
@@ -81,50 +87,13 @@ addopts = """
     --cov
     --cov-report=html:.htmlcov
 """
-filterwarnings = []
+
 
 [tool.coverage.run]
-omit = ["test*.py"]
+omit = ["test*.py", "noxfile.py"]
 
 [tool.coverage.report]
 exclude_lines = [
     "# pragma: nocover",
     "if TYPE_CHECKING:"
 ]
-
-[tool.tox]
-legacy_tox_ini = """
-[tox]
-toxworkdir=/tmp/tox/actual_django_admin
-skip_missing_interpreters=True
-envlist=
-  py{38,39,310,311,312}-django-{32,40,41,42}
-  py{310,311,312,313}-django-{50,51}
-
-[gh-actions]
-python =
-  3.8: py38
-  3.9: py39
-  3.10: py310
-  3.11: py311
-  3.12: py312
-  3.13: py313
-
-[testenv]
-install_command =
-  pip install {opts} {packages}
-setenv =
-  DJANGO_SETTINGS_MODULE=actual_admin_docs.tests.testproject.settings
-commands =
-  pytest {envsitepackagesdir}/actual_admin_docs
-
-deps=
-  django-32: django==3.2.*
-  django-40: django==4.0.*
-  django-41: django==4.1.*
-  django-42: django==4.2.*
-  django-50: django==5.0.*
-  django-51: django==5.1.*
-  pytest
-  pytest-django
-"""

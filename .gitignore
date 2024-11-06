@@ -6,6 +6,7 @@ dist/
 wheels/
 *.egg-info
 
+.nox
 .coverage
 .htmlcov
 .python-version

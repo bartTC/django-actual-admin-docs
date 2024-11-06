@@ -403,4 +403,4 @@ test = ["coverage", "pytest", "pytest-cov"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "16be315008d20b22a46068fccdc17ea13b1f2fe448cb0f77c7f4fbcc785b2ba2"
+content-hash = "660e3c8b050dca88ac22ff00cbd1ead8e92b8443d8c3313d5e4900203647ea2d"
