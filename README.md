@@ -77,3 +77,14 @@ For images, downloads etc. use regular markdown markup too:
 ## Custom CSS
 
 Overwrite the `actual-admin-docs.css` file to add your custom styles.
+
+
+-----
+
+# 🤺 Local Development
+
+```bash
+$ poetry install
+$ poetry run pytest
+$ DJANGO_SETTINGS_MODULE=actual_admin_docs.tests.testproject.settings poetry run django-admin runserver
+```
