@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4 2024-11-06
+
+- Sample documentation for testing purpose is now part of the module.
+- Added testing with docs.
+
 ## v0.3 2024-11-06
 
 - Improved local test setup,
