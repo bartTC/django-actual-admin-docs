@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "django-actual-admin-docs"
-version = "0.3a0"
+version = "0.3"
 packages = [{include = "actual_admin_docs"}]
 description = "Render Markdown documentation in the Django Admin."
 authors = ["Martin Mahner <martin@mahner.org>"]
